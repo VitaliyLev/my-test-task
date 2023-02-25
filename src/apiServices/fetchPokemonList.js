@@ -6,7 +6,7 @@ axios.defaults.baseURL = BASE_URL_API;
 export async function fetchPokemonList(page, limit) {
   try {
     const response = await axios.get(`/pokemon?offset=${(page - 1) * limit}&limit=${limit}`);
-    return response.data.results;
+    return response.data;
   } catch (error) {
     console.log(error);
   }
