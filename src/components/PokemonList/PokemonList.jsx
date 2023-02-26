@@ -3,8 +3,8 @@ import { fetchPokemonList } from 'apiServices/fetchPokemonList';
 
 import PokemonCard from './pokemonCard/PokemonCard';
 import PaginationBtn from './pagination/Pagination';
-import { Grid, CardContent } from '@mui/material';
-import { StyledBox, StyledTypography, StyledCard } from './PokemonList.styled';
+import { Grid } from '@mui/material';
+import { StyledBox, StyledTypography } from './PokemonList.styled';
 
 // a component with pagination that contains a list of pokemons and pagination buttons
 export default function PokemonList() {
@@ -49,11 +49,7 @@ export default function PokemonList() {
       <Grid container spacing={2}>
         {pokemonList?.map(pokemon => (
           <Grid item key={pokemon.name} xs={8} sm={6} md={4}>
-            <StyledCard>
-              <CardContent style={{ textAlign: 'center' }}>
-                <PokemonCard pokemon={pokemon} />
-              </CardContent>
-            </StyledCard>
+            <PokemonCard pokemon={pokemon} />
           </Grid>
         ))}
       </Grid>

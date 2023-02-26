@@ -1,4 +1,6 @@
+import { CardContent } from '@mui/material';
 import React, { useEffect, useRef } from 'react';
+import { StyledCard } from '../PokemonList.styled';
 import { StyledLink } from './PokemonCard.styled';
 
 // a component that shows information about a Pokemon in the form of a card
@@ -16,7 +18,9 @@ export default function PokemonCard({ pokemon }) {
   return (
     <>
       <StyledLink ref={linkRef} to={`/pokemonList/${name}`}>
-        {name}
+        <StyledCard>
+          <CardContent style={{ textAlign: 'center' }}>{name}</CardContent>
+        </StyledCard>
       </StyledLink>
     </>
   );
