@@ -1,4 +1,5 @@
 import React from 'react';
+
 import Accordion from '@mui/material/Accordion';
 import AccordionSummary from '@mui/material/AccordionSummary';
 import AccordionDetails from '@mui/material/AccordionDetails';
@@ -6,6 +7,7 @@ import Typography from '@mui/material/Typography';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import { useTheme } from '@emotion/react';
 
+//pokemon details card
 export default function PokemonInfoCard({ pokemonDetails }) {
   const theme = useTheme();
   const { name, sprites, abilities, types } = pokemonDetails;

@@ -10,28 +10,43 @@ import {
   REGISTER,
 } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
-import { favoriteReducer } from "./favoritePokemon/slice";
 
-//all reducers
-const rootReducer = {
-  favorite: favoriteReducer,
-  // darkTheme: darkThemeReducer,
-};
+//reducers
+import { favoriteReducer } from './favoritePokemon/slice';
+import { themeReducer } from './themeMode/slice';
 
-//record in the storage of an array of carts
-const persistedReducer = persistReducer(
-  {
+//config favorite
+const favoritePersistConfig = {
   key: 'favorite',
   storage,
   whitelist: ['favorite'],
+};
+
+//config theme
+const themePersistConfig = {
+  key: 'isDarkTheme',
+  storage,
+};
+
+//all reducers
+const rootReducer = combineReducers({
+  favorite: persistReducer(favoritePersistConfig, favoriteReducer),
+  themeToggle: persistReducer(themePersistConfig, themeReducer),
+});
+
+//save reducer in localStorage
+const persistedReducer = persistReducer(
+  {
+    key: 'root',
+    storage,
   },
-  combineReducers(rootReducer)
+  rootReducer
 );
 
-//redux store
-export const store = configureStore({
+//store
+const store = configureStore({
   reducer: persistedReducer,
-  middleware: getDefaultMiddleware =>
+  middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({
       serializableCheck: {
         ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
@@ -39,5 +54,5 @@ export const store = configureStore({
     }),
 });
 
-//redux persist store
-export const persistor = persistStore(store);
+const persistor = persistStore(store);
+export { store, persistor };

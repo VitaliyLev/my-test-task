@@ -11,16 +11,20 @@ import MenuIcon from '@mui/icons-material/Menu';
 import Container from '@mui/material/Container';
 import Button from '@mui/material/Button';
 import MenuItem from '@mui/material/MenuItem';
+
 import ThemeButton from 'components/ThemeButton/ThemeBnt';
 import { StyledLink } from './Header.styled';
 
+//header app
 export const Header = () => {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
 
+  //open mobil menu
   const handleOpenNavMenu = event => {
     setAnchorElNav(event.currentTarget);
   };
 
+  //close mobil menu
   const handleCloseNavMenu = () => {
     setAnchorElNav(null);
   };

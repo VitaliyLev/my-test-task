@@ -1,46 +1,32 @@
-import { Button } from '@mui/material';
 import React from 'react';
-
-import { useDispatch } from 'react-redux';
-import { removeFavoritePokemon } from 'redux/favoritePokemon/slice';
 import { useSelector } from 'react-redux';
 import { selectFavorite } from 'redux/favoritePokemon/selectors';
 
+import { Grid } from '@mui/material';
+
+import FavoritePokemonCard from '../../components/FavoriteCard/FavoritePokemonCard';
+import { StyledContainer } from 'pages/PokemonPage/PokemonPage.styled';
+
+//favorite polemons page
 export default function Favorite() {
-  const dispatch = useDispatch();
-  const handleRemoveFavoritePokemon = id => {
-    dispatch(removeFavoritePokemon(id));
-  };
   const pokemonDetails = useSelector(selectFavorite);
 
   return (
-    <>
-      <div>favorite</div>
-
-      <ul>
+    <StyledContainer fixed>
+      <Grid container spacing={2}>
         {pokemonDetails?.map(item => (
-          <li key={item.id}>
-            <p>Name: {item.name}</p>
-            <Button onClick={() => handleRemoveFavoritePokemon(item.id)}>
-              Delete from Favorite
-            </Button>
-            <img src={item.sprites?.back_default} alt={item.name} />
-            <ul>
-              <p>Ability:</p>
-              {item.abilities?.map((ability, index) => (
-                <li key={ability.ability.name}>{ability.ability.name}</li>
-              ))}
-            </ul>
-            <ul>
-              <p>Type:</p>
-              {item.types?.map((type, index) => (
-                <li key={type.type.name}>{type.type.name}</li>
-              ))}
-            </ul>
-            <p>base_experience: {item.base_experience}</p>
-          </li>
+          <Grid
+            item
+            xs={12}
+            sm={6}
+            md={4}
+            key={item.id}
+            style={{ position: 'relative' }}
+          >
+            <FavoritePokemonCard item={item} />
+          </Grid>
         ))}
-      </ul>
-    </>
+      </Grid>
+    </StyledContainer>
   );
 }

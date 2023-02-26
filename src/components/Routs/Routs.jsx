@@ -5,11 +5,12 @@ import PokemonPage from 'pages/PokemonPage/PokemonPage';
 import React from 'react';
 import { Route, Routes } from 'react-router-dom';
 
+//app routes
 export default function Routs() {
   return (
     <Routes>
       <Route path="/" element={<Header />}>
-        <Route index path="pokemonList" element={<PokemonPage />} />
+        <Route index element={<PokemonPage />} />
         <Route path="favorite" element={<Favorite />} />
 
         <Route path="pokemonList" element={<PokemonPage />}>

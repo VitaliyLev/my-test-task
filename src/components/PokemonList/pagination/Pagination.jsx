@@ -4,6 +4,7 @@ import { Button, Pagination } from '@mui/material';
 import { StyledBox } from './Pagination.styled';
 import { useTheme } from '@emotion/react';
 
+//pagination buttons
 export default function PaginationBtn({ paginationSettings }) {
   const { setPage, limit, pageCount, page, handleChangePage } =
     paginationSettings;
@@ -11,6 +12,7 @@ export default function PaginationBtn({ paginationSettings }) {
   const theme = useTheme();
   const isSmallScreen = useMediaQuery(theme.breakpoints.between(0, 900));
 
+  //display none in mobile version
   const paginationStyle = {
     display: isSmallScreen ? 'none' : 'block',
   };
